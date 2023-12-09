@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Hakaton.Models;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @*<li class="nav-item">
+    <div class="nav-link text-dark">Привет, @UserManager.GetUserName(User)!</div>
+    </li>*@
+        <li class="nav-item">
+            <a class="nav-link" id="logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">Выйти</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+        </li>
+    }
+</ul>
+
